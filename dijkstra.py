@@ -5,9 +5,9 @@ def barrido_kruskall(grafo, arbol, idA):
         grafo.dic_vertices[id1].dic_veci[id2] = peso
         grafo.dic_vertices[id2].dic_veci[id1] = peso
 
-def dijkstra(grafo, arbol):
-    idA = "316802007"  # obtener_nodo() # funcion que pide el nodo a la pagina
-    idB = "660657169"  # obtener_nodo()
+def dijkstra(grafo, arbol, idA, idB):
+    # idA = "316802007"  # obtener_nodo() # funcion que pide el nodo a la pagina
+    # idB = "660657169"  # obtener_nodo()
     barrido_kruskall(grafo, arbol, idA) #correcto
 
     """ETIQUETADO DE NODOS DE ACUERDO A DIJKSTRA"""
