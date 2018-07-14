@@ -14,6 +14,7 @@ def funcion_web(lat1, lon1, lat2, lon2):
     grafo = grafoOSM(archivo2)
     arbol = kruskal(grafo)
     """ruta es una lista de coordenadas(tuplas)"""
+    assert lat1>=grafo.ymin and lat1<=grafo.ymax and lon1>=grafo.xmin and lon1<=grafo.xmax, "coordenadas fuera de rango"
     return ruta(lat1, lon1, lat2, lon2, grafo, arbol)
 
 def ruta(lat1, lon1, lat2, lon2, grafo, arbol):
