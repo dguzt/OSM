@@ -1,1 +1,5 @@
 __pycache__
+.next
+out
+node_modules
+yarn-error.log
