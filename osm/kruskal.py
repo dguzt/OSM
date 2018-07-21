@@ -1,5 +1,5 @@
 # Implementación del algoritmo Kruskal
-from .grafos import *
+from grafos import *
 # Variables globales
 base = dict()
 ord = dict()

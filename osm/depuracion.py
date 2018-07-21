@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as et
-from .grafos import Vertice
+from grafos import Vertice
 
 
 def depurar(archivo):
@@ -9,6 +9,7 @@ def depurar(archivo):
 	eliminarRelations(root)
 	dict_nodos = {} # se lleva registro de los nodos que existen solo en los caminos
 	eliminarWays(dict_nodos, root)
+	assert len(dict_nodos) != 0, "diccionario vacio, no recoge nodos de caminos"
 	eliminarNodes(dict_nodos, root)
 	tree.write('modificado.xml')
 
@@ -20,35 +21,30 @@ def eliminarRelations(root):
 def eliminarWays(dict_nodos, root):
 	# eliminación de caminos que no sean 'highway'
 	for way in root.findall("way"):
-	    '''obtenemos datos: autopista(boolean)
-	       - si es autopista, nombre(string)
-	       - el nombre de la calle'''
-	    autopista, nombre = obtenerDatosWay(way)
-	    "en caso no sea una autopista, se elimina y continua iterando"
-	    if not autopista:
-	    	root.remove(way)
-	    	continue
-	    else:
-	    	way.attrib.pop("changeset")
-	    	way.attrib.pop("timestamp")
-	    	way.attrib.pop("uid")
-	    	way.attrib.pop("user")
-	    	way.attrib.pop("version")
-	    	way.attrib.pop("visible")
-	    	# guardamos los nodos de los caminos
-	    	for nd in way.findall("nd"):
-	    		dict_nodos[nd.get("id")] = 0
-
+		'''obtenemos datos: autopista(boolean)
+			- si es autopista, nombre(string)
+		   	- el nombre de la calle'''
+		autopista, nombre = obtenerDatosWay(way)
+		"en caso no sea una autopista, se elimina y continua iterando"
+		if not autopista:
+			root.remove(way)
+			continue
+		else:
+			way.attrib.pop("changeset")
+			way.attrib.pop("timestamp")
+			way.attrib.pop("uid")
+			way.attrib.pop("user")
+			way.attrib.pop("version")
+			way.attrib.pop("visible")
+			# guardamos los nodos de los caminos
+			for nd in way.findall("nd"):
+				dict_nodos[nd.get("ref")] = 1
 
 def eliminarNodes(dict_nodos, root):
-	# almacenamiento de todos los nodos en diccionario
-	dict_nodos = {}
-	for nodo in root.findall("node"):
-		dict_nodos[nodo.get("id")] = 0
 	# eliminación de nodos que no se encuentran en los caminos
 	# los que no se eliminan, se borran atributos que no se utilizan
 	for nodo in root.findall("node"):
-		if not nodo.get("id") in dict_nodos:
+		if not nodo.get("id") in dict_nodos.keys():
 			root.remove(nodo)
 		else:
 			nodo.attrib.pop("changeset")

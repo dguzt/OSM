@@ -27,7 +27,7 @@ class Vertice:
         self.y = None
         self.dic_veci = {}
         self.etiqueta = (0, 10000000) # etiqueta TUPLA para almacenar con Dijkstra (dist, idV)
-        self.nombre = ""
+        self.nombre = " "
 
     def __repr__(self):
         return f'V(x={self.x}, y={self.y})'

@@ -1,4 +1,4 @@
-from .grafos import *
+from grafos import *
 
 def barrido_kruskall(grafo, arbol):
     for peso, id1, id2 in arbol:
@@ -10,7 +10,7 @@ def dijkstra(grafo, arbol, idA, idB):
 
     """ETIQUETADO DE NODOS DE ACUERDO A DIJKSTRA"""
     cola = []
-    nodo = grafo.dic_vertices[idA]
+    nodo = grafo.dic_vertices[idA] # se obtiene el nodo inicial
     nodo.etiqueta = (idA, 0)
     id_ant = 0
     cola.append((nodo, id_ant))
@@ -22,16 +22,13 @@ def dijkstra(grafo, arbol, idA, idB):
             if (nodo.dic_veci[id] + nodo.etiqueta[1]) <= vecino.etiqueta[1]:
                 vecino.etiqueta = (nodo.id, nodo.dic_veci[id] + nodo.etiqueta[1])
             cola.append((vecino, nodo.id))
-
+    assert grafo.dic_vertices[idB].etiqueta[0] != 0, "Error: El camino no engloba el final"
     """RETORNO DEL CAMINO"""
     camino = []
     id = idB
     while(1):
-        print('id: ', id, 'idA: ', idA, 'idB: ', idB)
         if(idA == id): break
         node = grafo.dic_vertices[id]
         camino.append(node)
         id = node.etiqueta[0] # id de donde proviene
-        print('etiqueta: ', node.etiqueta)
-
     return camino

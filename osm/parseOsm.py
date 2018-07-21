@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as et
 import math
-from .grafos import *
+from grafos import *
 '''
 Dato un archivo .osm o .xml que almacena nodos y caminos,
 se retorna un grafo que almacene todos estos datos usando
