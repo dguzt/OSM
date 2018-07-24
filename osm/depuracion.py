@@ -53,7 +53,7 @@ def eliminarNodes(dict_nodos, root):
 			nodo.attrib.pop("user")
 			nodo.attrib.pop("version")
 			nodo.attrib.pop("visible")
-
+			# asd
 
 def obtenerDatosWay(way):
     autopista = False
