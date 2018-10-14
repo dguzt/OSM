@@ -1,4 +1,4 @@
-from grafos import *
+from .grafos import *
 
 def barrido_kruskall(grafo, arbol):
     for peso, id1, id2 in arbol:

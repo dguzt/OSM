@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as et
-from grafos import Vertice
+from .grafos import Vertice
 
 
 def depurar(archivo):

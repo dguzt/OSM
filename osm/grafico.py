@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from grafos import *
+from .grafos import *
 
 def mapeoarbol(grafo, arbol, camino):
 	plt.title("MAPA DE RUTAS")
